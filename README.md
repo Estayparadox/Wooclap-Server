@@ -1,27 +1,24 @@
 # Wooclap-server
 
 ### Prerequisite
-At the root of the project create a .env file and copy the code below inside this file.
+At the root of the project create a .env file and copy the accessible code on the following file:
+
+* [Google Doc](https://docs.google.com/document/d/1a2kmwagv1bPuxloXzOAb0p535OUYqnEdXI_Wsde7rqU/edit)
+
+Or copy paste the code below and complete it:
 
 ```
-PORT=8000
-AUTHORIZE_URL="http://localhost:3000"
-WOOCLAP_CONTACT_EMAIL="joseph.pereniguez@outlook.com"
-WOOCLAP_CONTACT_NAME="Joseph"
-WOOCLAP_BOT_EMAIL="joseph.pereniguez@outlook.com"
-WOOCLAP_BOT_NAME="Joseph"
-WOOCLAP_SALES_EMAIL="joseph.pereniguez@gmail.com"
-WOOCLAP_SALES_NAME="Joseph"
-MJ_APIKEY_PUBLIC='c8e14a0f2c8aed61ff59b958fd2c225e'
-MJ_APIKEY_PRIVATE='82d5d692bc0e7524e2f370f392361f4c'
+PORT=<the port you want to run the server>
+AUTHORIZE_URL=<the url you authorize to access and request your api while doing tests. (app like postman don't need this)>
+WOOCLAP_CONTACT_EMAIL=<the email sender when a mail is sent to users>
+WOOCLAP_CONTACT_NAME=<the contact name>
+WOOCLAP_BOT_EMAIL=<the email sender when a mail is sent to the sales team>
+WOOCLAP_BOT_NAME=<the bot name>
+WOOCLAP_SALES_EMAIL=<the sales team mail>
+WOOCLAP_SALES_NAME=<the sales team name>
+MJ_APIKEY_PUBLIC=<relative to mailjet tool>
+MJ_APIKEY_PRIVATE=<relative to mailjet tool>
 ```
-
-* PORT is the port you want to run the server
-* AUTHORIZE_URL is the url you authorize to access and request your api while doing tests. (app like postman don't need this).
-* WOOCLAP_CONTACT_XXX is the email sender when a mail is sent to users.
-* WOOCLAP_BOT_XXX is the email sender when a mail is sent to the sales team.
-* WOOCLAP_SALES_XXX is the sales team mail.
-* MJ_APIKEY_PUBLIC and MJ_APIKEY_PRIVATE are relative to mailjet tool.
 
 ### Install
 At the root of the project run
