@@ -2,20 +2,20 @@
 
 require('dotenv').config();
 
-var express = require("express");
+var express = require('express');
 
 var cors = require('cors');
 
 var app = express();
 
-var bodyParser = require("body-parser");
+var bodyParser = require('body-parser');
 
 app.use(bodyParser.urlencoded({
   extended: false
 }));
 app.use(bodyParser.json());
 app.listen(process.env.PORT, function () {
-  console.log("Server running on port %PORT%".replace("%PORT%", process.env.PORT));
+  console.log('Server running on port %PORT%'.replace('%PORT%', process.env.PORT));
 });
 app.use(cors({
   origin: process.env.AUTHORIZE_URL,
@@ -79,33 +79,33 @@ setTimeout(addStanford, 4000);
 setTimeout(addMit, 4000);
 setTimeout(addYale, 4000);
 setTimeout(addPrinceton, 4000);
-app.get("/", function (req, res, next) {
+app.get('/', function (req, res, next) {
   res.json({
-    "message": "Ok"
+    message: 'Ok'
   });
 });
-app.post("/api/submit-form", function (req, res, next) {
+app.post('/api/submit-form', function (req, res, next) {
   var errors = [];
 
   if (!req.body.job_title) {
-    errors.push("No job_title specified");
+    errors.push('No job_title specified');
   }
 
   if (!req.body.organisation) {
-    errors.push("No organisation specified");
+    errors.push('No organisation specified');
   }
 
   if (!req.body.email_address) {
-    errors.push("No email_address specified");
+    errors.push('No email_address specified');
   }
 
   if (!req.body.name) {
-    errors.push("No name specified");
+    errors.push('No name specified');
   }
 
   if (errors.length) {
     res.status(400).json({
-      "error": errors.join(",")
+      error: errors.join(',')
     });
     return;
   }
@@ -121,33 +121,33 @@ app.post("/api/submit-form", function (req, res, next) {
   db.run(sql, params, function (err, result) {
     if (err) {
       res.status(400).json({
-        "error": err.message
+        error: err.message
       });
       return;
     }
 
     res.json({
-      "message": "success",
-      "data": data,
-      "id": this.lastID
+      message: 'success',
+      data: data,
+      id: this.lastID
     });
   });
-  console.log("POST /submit-form");
+  console.log('POST /submit-form');
 });
-app.post("/api/send-custom-mail", function (req, res, next) {
+app.post('/api/send-custom-mail', function (req, res, next) {
   var errors = [];
 
   if (!req.body.organisation) {
-    errors.push("No organisation specified");
+    errors.push('No organisation specified');
   }
 
   if (!req.body.concernedUsers) {
-    errors.push("No concernedUsers specified");
+    errors.push('No concernedUsers specified');
   }
 
   if (errors.length) {
     res.status(400).json({
-      "error": errors.join(",")
+      error: errors.join(',')
     });
     return;
   }
@@ -157,49 +157,49 @@ app.post("/api/send-custom-mail", function (req, res, next) {
 
   var mailjet = require('node-mailjet').connect(process.env.MJ_APIKEY_PUBLIC, process.env.MJ_APIKEY_PRIVATE);
 
-  var request = mailjet.post("send", {
-    'version': 'v3.1'
+  var request = mailjet.post('send', {
+    version: 'v3.1'
   }).request({
-    "Messages": [{
-      "From": {
-        "Email": process.env.WOOCLAP_BOT_EMAIL,
-        "Name": process.env.WOOCLAP_BOT_NAME
+    Messages: [{
+      From: {
+        Email: process.env.WOOCLAP_BOT_EMAIL,
+        Name: process.env.WOOCLAP_BOT_NAME
       },
-      "To": [{
-        "Email": process.env.WOOCLAP_SALES_EMAIL,
-        "Name": process.env.WOOCLAP_SALES_NAME
+      To: [{
+        Email: process.env.WOOCLAP_SALES_EMAIL,
+        Name: process.env.WOOCLAP_SALES_NAME
       }],
-      "Subject": "Potential Clients.",
-      "TextPart": "Potential Clients.",
-      "HTMLPart": "<h1>The organisation ".concat(organisation, " is interest in Wooclap</h1> <h2>Here are the users who asked for the white book</h2> <h3>").concat(concernedUsers, "<h3>")
+      Subject: 'Potential Clients.',
+      TextPart: 'Potential Clients.',
+      HTMLPart: "<h1>The organisation ".concat(organisation, " is interest in Wooclap</h1> <h2>Here are the users who asked for the white book</h2> <h3>").concat(concernedUsers, "<h3>")
     }]
   });
   request.then(function (result) {
     res.json({
-      "message": "success",
-      "email": result.body
+      message: 'success',
+      email: result.body
     });
   })["catch"](function (err) {
     res.status(400).json({
-      "error": err.message
+      error: err.message
     });
   });
-  console.log("POST /send-custom-mail");
+  console.log('POST /send-custom-mail');
 });
-app.post("/api/send-mail", function (req, res, next) {
+app.post('/api/send-mail', function (req, res, next) {
   var errors = [];
 
   if (!req.body.email_address) {
-    errors.push("No email_address specified");
+    errors.push('No email_address specified');
   }
 
   if (!req.body.name) {
-    errors.push("No name specified");
+    errors.push('No name specified');
   }
 
   if (errors.length) {
     res.status(400).json({
-      "error": errors.join(",")
+      error: errors.join(',')
     });
     return;
   }
@@ -209,135 +209,135 @@ app.post("/api/send-mail", function (req, res, next) {
 
   var mailjet = require('node-mailjet').connect(process.env.MJ_APIKEY_PUBLIC, process.env.MJ_APIKEY_PRIVATE);
 
-  var request = mailjet.post("send", {
-    'version': 'v3.1'
+  var request = mailjet.post('send', {
+    version: 'v3.1'
   }).request({
-    "Messages": [{
-      "From": {
-        "Email": process.env.WOOCLAP_CONTACT_EMAIL,
-        "Name": process.env.WOOCLAP_CONTACT_NAME
+    Messages: [{
+      From: {
+        Email: process.env.WOOCLAP_CONTACT_EMAIL,
+        Name: process.env.WOOCLAP_CONTACT_NAME
       },
-      "To": [{
-        "Email": userEmail,
-        "Name": name
+      To: [{
+        Email: userEmail,
+        Name: name
       }],
-      "Subject": "Our white paper.",
-      "TextPart": "Our White Paper.",
-      "HTMLPart": "<h3>Dear future customer, you can find our white paper at <a href='https://drive.google.com/uc?export=download&id=1lRy3jzjEUbSrrsksGGgjfAqIgkzyWre6'>this link</a>!</h3>"
+      Subject: 'Our white paper.',
+      TextPart: 'Our White Paper.',
+      HTMLPart: '<h3>Dear future customer, you can find our white paper at <a href=\'https://drive.google.com/uc?export=download&id=1lRy3jzjEUbSrrsksGGgjfAqIgkzyWre6\'>this link</a>!</h3>'
     }]
   });
   request.then(function (result) {
     res.json({
-      "message": "success",
-      "email": result.body
+      message: 'success',
+      email: result.body
     });
   })["catch"](function (err) {
     res.status(400).json({
-      "error": err.message
+      error: err.message
     });
   });
-  console.log("POST /send-mail");
+  console.log('POST /send-mail');
 });
-app.get("/api/organisations", function (req, res, next) {
-  var sql = "select * from organisations";
+app.get('/api/organisations', function (req, res, next) {
+  var sql = 'select * from organisations';
   var params = [];
   db.all(sql, params, function (err, rows) {
     if (err) {
       res.status(400).json({
-        "error": err.message
+        error: err.message
       });
       return;
     }
 
     res.json({
-      "message": "success",
-      "data": rows
+      message: 'success',
+      data: rows
     });
   });
-  console.log("GET /organisations");
+  console.log('GET /organisations');
 });
-app.get("/api/users", function (req, res, next) {
-  var sql = "select * from users";
+app.get('/api/users', function (req, res, next) {
+  var sql = 'select * from users';
   var params = [];
   db.all(sql, params, function (err, rows) {
     if (err) {
       res.status(400).json({
-        "error": err.message
+        error: err.message
       });
       return;
     }
 
     res.json({
-      "message": "success",
-      "data": rows
+      message: 'success',
+      data: rows
     });
   });
-  console.log("GET /users");
+  console.log('GET /users');
 });
-app.get("/api/user-has-already-submit", function (req, res, next) {
-  var sql = "select * from userHasAlreadySubmit";
+app.get('/api/user-has-already-submit', function (req, res, next) {
+  var sql = 'select * from userHasAlreadySubmit';
   var params = [];
   db.all(sql, params, function (err, rows) {
     if (err) {
       res.status(400).json({
-        "error": err.message
+        error: err.message
       });
       return;
     }
 
     res.json({
-      "message": "success",
-      "data": rows
+      message: 'success',
+      data: rows
     });
   });
-  console.log("GET /userHasAlreadySubmit");
+  console.log('GET /userHasAlreadySubmit');
 });
-app.get("/api/stats", function (req, res, next) {
-  var sql = "select * from stats";
+app.get('/api/stats', function (req, res, next) {
+  var sql = 'select * from stats';
   var params = [];
   db.all(sql, params, function (err, rows) {
     if (err) {
       res.status(400).json({
-        "error": err.message
+        error: err.message
       });
       return;
     }
 
     res.json({
-      "message": "success",
-      "data": rows
+      message: 'success',
+      data: rows
     });
   });
-  console.log("GET /stats");
+  console.log('GET /stats');
 });
-app.get("/api/stat/:id", function (req, res, next) {
-  var sql = "select * from stats where id = ?";
+app.get('/api/stat/:id', function (req, res, next) {
+  var sql = 'select * from stats where id = ?';
   var params = [req.params.id];
   db.get(sql, params, function (err, row) {
     if (err) {
       res.status(400).json({
-        "error": err.message
+        error: err.message
       });
       return;
     }
 
     res.json({
-      "message": "success",
-      "data": row
+      message: 'success',
+      data: row
     });
   });
   console.log("GET /stat/".concat(req.params.id));
 });
-app.post("/api/user/", function (req, res, next) {
+app.post('/api/user/', function (req, res, next) {
   var errors = [];
 
   if (!req.body.email_address) {
-    errors.push("No email specified");
+    errors.push('No email specified');
   }
 
   if (errors.length) {
     res.status(400).json({
-      "error": errors.join(",")
+      error: errors.join(',')
     });
     return;
   }
@@ -351,20 +351,20 @@ app.post("/api/user/", function (req, res, next) {
   db.run(sql, params, function (err, result) {
     if (err) {
       res.status(400).json({
-        "error": err.message
+        error: err.message
       });
       return;
     }
 
     res.json({
-      "message": "success",
-      "data": data,
-      "id": this.lastID
+      message: 'success',
+      data: data,
+      id: this.lastID
     });
   });
-  console.log("POST /user");
+  console.log('POST /user');
 });
-app.patch("/api/organisation/:id", function (req, res, next) {
+app.patch('/api/organisation/:id', function (req, res, next) {
   var data = {
     name: req.body.name,
     email_domain: req.body.email_domain,
@@ -373,13 +373,13 @@ app.patch("/api/organisation/:id", function (req, res, next) {
   db.run("UPDATE organisations set \n           name = COALESCE(?,name), \n           email_domain = COALESCE(?,email_domain),\n           is_client = COALESCE(?,is_client)\n           WHERE id = ?", [data.name, data.email_domain, data.is_client, req.params.id], function (err, result) {
     if (err) {
       res.status(400).json({
-        "error": res.message
+        error: res.message
       });
       return;
     }
 
     res.json({
-      message: "success",
+      message: 'success',
       data: data,
       changes: this.changes
     });
