@@ -1,7 +1,7 @@
 # Wooclap-server
 
 ### Prerequisite
-In the backend/ folder create a .env file and copy the code below inside this file.
+At the root of the project create a .env file and copy the code below inside this file.
 
 ```
 PORT=8000
@@ -24,13 +24,13 @@ MJ_APIKEY_PRIVATE='82d5d692bc0e7524e2f370f392361f4c'
 * MJ_APIKEY_PUBLIC and MJ_APIKEY_PRIVATE are relative to mailjet tool.
 
 ### Install
-In the backend/ folder run
+At the root of the project run
 ```
 $> yarn install
 ```
 
 ### Run
-In the backend/ folder run
+At the root of the project run
 ```
 $> yarn start
 ```
