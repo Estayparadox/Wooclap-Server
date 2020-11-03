@@ -396,3 +396,5 @@ app.patch('/api/organisation/:id', (req, res, next) => {
 app.use((req, res) => {
   res.status(404);
 });
+
+export default app;
