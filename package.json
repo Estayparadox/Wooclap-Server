@@ -7,7 +7,10 @@
     "prestart": "babel ./src --out-dir build",
     "start": "node src/server.js",
     "startdev": "nodemon --exec babel-node ./src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "./node_modules/.bin/eslint ./src",
+    "pretty": "prettier --write '**/*.{js,json}' '!node_modules/**'",
+    "postpretty": "yarn lint --fix"
   },
   "repository": {
     "type": "git",
@@ -20,6 +23,7 @@
   },
   "homepage": "https://github.com/Estayparadox/white-paper#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
@@ -35,6 +39,10 @@
     "@babel/preset-env": "^7.12.1",
     "@babel/register": "^7.12.1",
     "@babel/runtime": "^7.12.1",
-    "nodemon": "^2.0.6"
+    "eslint": "^7.12.1",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "nodemon": "^2.0.6",
+    "prettier": "^2.1.2"
   }
 }
