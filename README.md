@@ -29,7 +29,7 @@ MJ_APIKEY_PRIVATE=<relative to mailjet tool>
 5. Adding the email addresses you want to use as mail sender.
 6. Validate the email validation to confirm your change.
 
-With a free Mailjet account you can send 200 emails per days with a limit of 6000 emails per months.
+With a free Mailjet account you can send 200 emails per day with a limit of 6000 emails per month.
 
 ### Install
 At the root of the project run
