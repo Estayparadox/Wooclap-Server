@@ -22,7 +22,7 @@ MJ_APIKEY_PRIVATE=<relative to mailjet tool>
 ```
 
 ⚠️ You cannot use every email addresses you want as your email senders, you'll have to:
-1. Register on ![Mailjet](https://app.mailjet.com/dashboard).
+1. Register on [Mailjet](https://app.mailjet.com/dashboard).
 2. Going on the Settings > API Key Management section page.
 3. Copy the api key and the secret key into your .env file.
 4. Going on the Settings > Sender domains & addresses page.
