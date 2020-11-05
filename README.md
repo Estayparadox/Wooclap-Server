@@ -21,6 +21,16 @@ MJ_APIKEY_PUBLIC=<relative to mailjet tool>
 MJ_APIKEY_PRIVATE=<relative to mailjet tool>
 ```
 
+⚠️ You cannot use every email addresses you want as your email senders, you'll have to:
+1. Register on ![Mailjet](https://app.mailjet.com/dashboard).
+2. Going on the Settings > API Key Management section page.
+3. Copy the api key and the secret key into your .env file.
+4. Going on the Settings > Sender domains & addresses page.
+5. Adding the email addresses you want to use as mail sender.
+6. Validate the email validation to confirm your change.
+
+With a free Mailjet account you can send 200 emails per days with a limit of 6000 emails per months.
+
 ### Install
 At the root of the project run
 ```
