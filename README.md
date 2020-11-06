@@ -1,7 +1,8 @@
 # Wooclap-server
 ![badge1](https://img.shields.io/badge/license-MIT-brightgreen.svg )  ![badge2](https://img.shields.io/badge/language-NodeJS-yellow)
 
-### Prerequisite
+## Prerequisite
+
 At the root of the project create a .env file and copy the accessible code on the following file:
 
 * [Google Doc](https://docs.google.com/document/d/1a2kmwagv1bPuxloXzOAb0p535OUYqnEdXI_Wsde7rqU/edit)
@@ -31,13 +32,15 @@ MJ_APIKEY_PRIVATE=<relative to mailjet tool>
 
 With a free Mailjet account you can send 200 emails per day with a limit of 6000 emails per month.
 
-### Install
+## Install
+
 At the root of the project run
 ```
 $> yarn install
 ```
 
-### Commands
+## Commands
+
 ```
 $> yarn prestart
 ```
